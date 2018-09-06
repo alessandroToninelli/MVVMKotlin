@@ -5,6 +5,7 @@ import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import it.toninelli.mvvmkotlin.Di.AppInjector
 import javax.inject.Inject
 
 
@@ -17,6 +18,7 @@ class MVVMApp: Application(), HasActivityInjector  {
 
     override fun onCreate() {
         super.onCreate()
+        AppInjector.init(this)
 
     }
 
