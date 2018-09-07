@@ -23,13 +23,9 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val Post = Post(2)
-        oggetto.getMessage()
+
 
     }
-
-
-
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
 }

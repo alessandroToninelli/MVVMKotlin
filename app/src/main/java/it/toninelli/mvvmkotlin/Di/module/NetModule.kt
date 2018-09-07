@@ -2,7 +2,7 @@ package it.toninelli.mvvmkotlin.Di.module
 
 import dagger.Module
 import dagger.Provides
-import it.toninelli.mvvmkotlin.BASE_URL
+import it.toninelli.mvvmkotlin.Util.BASE_URL
 import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
 import it.toninelli.mvvmkotlin.Retrofit.ApiService
 import retrofit2.Retrofit
