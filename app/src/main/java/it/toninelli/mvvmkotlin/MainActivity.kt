@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.SyncStateContract
 import android.support.v4.app.Fragment
+import android.widget.TextView
 import androidx.navigation.Navigation.findNavController
 
 
@@ -23,12 +24,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-
     }
 
 
+    override fun onSupportNavigateUp() = findNavController(this,R.id.my_nav_host_fragment).navigateUp()
 
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector

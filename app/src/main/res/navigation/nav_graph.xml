@@ -11,7 +11,7 @@
         android:label="posts_fragment"
         tools:layout="@layout/posts_fragment">
         <action
-            android:id="@+id/action_posts_fragment_to_user_fragment"
+            android:id="@+id/postsToUser"
             app:destination="@id/user_fragment" />
     </fragment>
     <fragment
