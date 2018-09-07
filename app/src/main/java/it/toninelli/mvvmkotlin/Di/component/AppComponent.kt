@@ -6,6 +6,7 @@ import dagger.Binds
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+
 import dagger.android.support.AndroidSupportInjectionModule
 import it.toninelli.mvvmkotlin.Di.interfaces.AppContext
 import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
@@ -15,7 +16,6 @@ import it.toninelli.mvvmkotlin.MVVMApp
 
 @ApplicationScope
 @Component(modules = [
-        AndroidInjectionModule::class,
         AndroidSupportInjectionModule::class,
         AppModule::class,
         SubComponentBuilder::class
