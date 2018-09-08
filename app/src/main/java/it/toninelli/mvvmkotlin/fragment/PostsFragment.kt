@@ -6,7 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+
+
+
 import it.toninelli.mvvmkotlin.R
+import it.toninelli.mvvmkotlin.Util.findNavController
+import kotlinx.android.synthetic.main.posts_fragment.view.*
 
 class PostsFragment:Fragment() {
 
@@ -17,4 +22,9 @@ class PostsFragment:Fragment() {
 
         return view
     }
+
+
+
+
+
 }
