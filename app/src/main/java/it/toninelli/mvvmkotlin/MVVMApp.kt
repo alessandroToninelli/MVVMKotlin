@@ -6,6 +6,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import it.toninelli.mvvmkotlin.Di.AppInjector
+import timber.log.Timber
 import javax.inject.Inject
 
 

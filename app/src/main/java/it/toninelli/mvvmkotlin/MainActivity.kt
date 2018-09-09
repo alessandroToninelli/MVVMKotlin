@@ -9,6 +9,7 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
+import it.toninelli.mvvmkotlin.Repository.PostRepo
 import it.toninelli.mvvmkotlin.Repository.UserRepo
 import it.toninelli.mvvmkotlin.Util.Resource
 import it.toninelli.mvvmkotlin.Util.Status
@@ -22,21 +23,20 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
-    lateinit var userRepo: UserRepo
+    lateinit var postRepo: PostRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val disposable  = userRepo.getUserById(11)
+        val disposable  = postRepo.getPosts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    val result = it.data ?: "vuoto"
-                    println(result)
+                    println("data $it")
                     },
                         {
-                    println(it.message)}
+                    println("errore: $it")}
                 )
 
 
@@ -46,10 +46,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
 
 
 
-    override fun onSupportNavigateUp(): Boolean {
-
-        return findNavController(R.id.my_nav_host_fragment).navigateUp()
-    }
+//    override fun onSupportNavigateUp(): Boolean {
+//
+//        return findNavController(R.id.my_nav_host_fragment).navigateUp()
+//    }
 
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
