@@ -40,10 +40,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
                 )
 
 
-
-
     }
-
 
 
 //    override fun onSupportNavigateUp(): Boolean {
