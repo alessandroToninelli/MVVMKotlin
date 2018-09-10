@@ -18,7 +18,12 @@ class PostsViewModel @Inject constructor(
     val result = MutableLiveData<Resource<List<Post>>>()
 
 
+    init {
+        loadPosts()
+    }
+
     fun loadPosts(){
+        println("carico post")
         compositeDisposable.addAll(
                 repo.getPosts()
                         .subscribeOn(Schedulers.io())
@@ -28,6 +33,7 @@ class PostsViewModel @Inject constructor(
     }
 
     override fun onCleared() {
+        println("canello")
         compositeDisposable.clear()
     }
 }

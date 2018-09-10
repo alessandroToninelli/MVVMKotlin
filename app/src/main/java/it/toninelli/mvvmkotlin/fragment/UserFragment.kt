@@ -10,16 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import it.toninelli.mvvmkotlin.Di.interfaces.Injectable
 import it.toninelli.mvvmkotlin.R
+import it.toninelli.mvvmkotlin.ViewModel.PostsViewModel
 import it.toninelli.mvvmkotlin.ViewModel.UserViewModel
 import javax.inject.Inject
 
 class UserFragment: Fragment(), Injectable{
 
 
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-    lateinit var viewModel: UserViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -29,6 +26,8 @@ class UserFragment: Fragment(), Injectable{
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+
 
 
     }

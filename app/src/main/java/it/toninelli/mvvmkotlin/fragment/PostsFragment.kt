@@ -15,17 +15,13 @@ import it.toninelli.mvvmkotlin.Di.interfaces.Injectable
 import it.toninelli.mvvmkotlin.R
 import it.toninelli.mvvmkotlin.Util.findNavController
 import it.toninelli.mvvmkotlin.ViewModel.PostsViewModel
+import it.toninelli.mvvmkotlin.ViewModel.UserViewModel
 import kotlinx.android.synthetic.main.posts_fragment.view.*
 import javax.inject.Inject
 
 class PostsFragment:Fragment(), Injectable {
 
 
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-
-    lateinit var postViewModel: PostsViewModel
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,6 +34,8 @@ class PostsFragment:Fragment(), Injectable {
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+
+
         super.onActivityCreated(savedInstanceState)
 
 
