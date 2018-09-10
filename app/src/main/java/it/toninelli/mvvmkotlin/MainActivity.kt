@@ -1,19 +1,16 @@
 package it.toninelli.mvvmkotlin
 
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import it.toninelli.mvvmkotlin.Repository.PostRepo
-import it.toninelli.mvvmkotlin.Repository.UserRepo
-import it.toninelli.mvvmkotlin.Util.Resource
-import it.toninelli.mvvmkotlin.Util.Status
-import it.toninelli.mvvmkotlin.Util.findNavController
+import it.toninelli.mvvmkotlin.ViewModel.UserViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
@@ -24,6 +21,12 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
 
     @Inject
     lateinit var postRepo: PostRepo
+
+    @Inject
+    lateinit var factory : ViewModelProvider.Factory
+
+
+    private lateinit var viewModel : UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +43,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
                 )
 
 
+
+        viewModel = ViewModelProviders.of(this, factory).get(UserViewModel::class.java)
+        viewModel.prova()
+
+
     }
+
+
 
 
 //    override fun onSupportNavigateUp(): Boolean {

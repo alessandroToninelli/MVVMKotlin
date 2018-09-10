@@ -8,7 +8,7 @@ import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
 import it.toninelli.mvvmkotlin.MVVMApp
 
 
-@Module(includes = [NetModule::class])
+@Module(includes = [NetModule::class, ViewModelModule::class])
 abstract class AppModule{
 
 
