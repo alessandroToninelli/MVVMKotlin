@@ -19,7 +19,7 @@ class PostRepo @Inject constructor( val apiService: ApiService){
         return apiService.getPosts()
                 .filter { it.isNotEmpty() }
                 .flatMap { Observable.just(Resource.success(it)) }
-                .onErrorReturn { Resource.error("onErrorReturn",null)}
+
 
 
 

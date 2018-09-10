@@ -22,6 +22,7 @@ class UserRepo @Inject constructor(
                 .flatMap { Observable.just(Resource.success(it.get(0))) }
 
 
+
     }
 
 }

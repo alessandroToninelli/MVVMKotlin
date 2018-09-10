@@ -19,33 +19,15 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
-    @Inject
-    lateinit var postRepo: PostRepo
-
-    @Inject
-    lateinit var factory : ViewModelProvider.Factory
-
-
     private lateinit var viewModel : UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val disposable  = postRepo.getPosts()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    println("data $it")
-                    },
-                        {
-                    println("errore: $it")}
-                )
 
 
 
-        viewModel = ViewModelProviders.of(this, factory).get(UserViewModel::class.java)
-        viewModel.prova()
 
 
     }

@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
+import it.toninelli.mvvmkotlin.Di.interfaces.Injectable
 
 
 import it.toninelli.mvvmkotlin.R
 import it.toninelli.mvvmkotlin.Util.findNavController
 import kotlinx.android.synthetic.main.posts_fragment.view.*
 
-class PostsFragment:Fragment() {
+class PostsFragment:Fragment(), Injectable {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
