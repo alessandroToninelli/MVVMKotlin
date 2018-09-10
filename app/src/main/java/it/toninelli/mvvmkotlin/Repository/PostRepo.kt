@@ -15,10 +15,10 @@ class PostRepo @Inject constructor( val apiService: ApiService){
 
 
 
-    fun getPosts(): Observable<Resource<List<Post>>> {
+    fun getPosts(): Observable<List<Post>> {
         return apiService.getPosts()
                 .filter { it.isNotEmpty() }
-                .flatMap { Observable.just(Resource.success(it)) }
+
 
 
 

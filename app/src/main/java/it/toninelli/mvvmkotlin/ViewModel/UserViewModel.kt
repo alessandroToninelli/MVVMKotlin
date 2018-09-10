@@ -17,7 +17,7 @@ class UserViewModel @Inject constructor(
 ) : ViewModel(){
 
     private val compositeDisposable = CompositeDisposable()
-    val result = MutableLiveData<Resource<User>>()
+    val result = MutableLiveData<Resource<List<User>>>()
 
 
 
@@ -27,7 +27,10 @@ class UserViewModel @Inject constructor(
         compositeDisposable.add(repo.getUserById(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({result.value = Resource.success(it.data)}, {result.value = Resource.error(it.localizedMessage,null)})
+                .doOnSubscribe { result.value = Resource.loading(null) }
+                .subscribe({result.value = Resource.success(it)}, {result.value = Resource.error(it.localizedMessage,null)})
+
+
 
 
 

@@ -16,10 +16,10 @@ class UserRepo @Inject constructor(
         val apiService: ApiService
 
 ){
-    fun getUserById(userId: Int): Observable<Resource<User>>{
+    fun getUserById(userId: Int): Observable<List<User>>{
         return apiService.getUser(userId)
                 .filter { it.isNotEmpty() }
-                .flatMap { Observable.just(Resource.success(it.get(0))) }
+                .flatMap { Observable.just(it) }
 
 
 

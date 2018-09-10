@@ -25,15 +25,8 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
         setContentView(R.layout.activity_main)
 
 
+
     }
-
-
-
-
-//    override fun onSupportNavigateUp(): Boolean {
-//
-//        return findNavController(R.id.my_nav_host_fragment).navigateUp()
-//    }
 
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
