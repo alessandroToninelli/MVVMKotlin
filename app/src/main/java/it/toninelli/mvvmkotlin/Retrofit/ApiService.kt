@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface ApiService{
 
 
-    @GET("/pots")
+    @GET("/posts")
     fun getPosts(): Observable<List<Post>>
 
     @GET("/users")

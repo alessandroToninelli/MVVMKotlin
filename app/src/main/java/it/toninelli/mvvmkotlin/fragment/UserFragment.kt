@@ -28,16 +28,8 @@ class UserFragment: Fragment(), Injectable{
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-
-        viewModel = ViewModelProviders.of(this,factory).get(UserViewModel::class.java)
-
-        viewModel.loadUser(1)
-
-
-        viewModel.result.observe(this, Observer {
-            println(it)
-        })
-
         super.onActivityCreated(savedInstanceState)
+
+
     }
 }
