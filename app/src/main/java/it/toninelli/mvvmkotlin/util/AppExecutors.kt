@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.Util
+package it.toninelli.mvvmkotlin.util
 
 import android.os.Handler
 import android.os.Looper

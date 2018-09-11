@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.Util
+package it.toninelli.mvvmkotlin.util
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?){
 

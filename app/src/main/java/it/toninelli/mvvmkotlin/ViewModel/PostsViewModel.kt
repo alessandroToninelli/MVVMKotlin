@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import it.toninelli.mvvmkotlin.Model.Post
 import it.toninelli.mvvmkotlin.Repository.PostRepo
-import it.toninelli.mvvmkotlin.Util.Resource
+import it.toninelli.mvvmkotlin.util.Resource
 import javax.inject.Inject
 
 class PostsViewModel @Inject constructor(

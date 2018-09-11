@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="it.toninelli.mvvmkotlin.util.Status"/>
+
+        <variable
+            name="resource"
+            type="it.toninelli.mvvmkotlin.util.Resource"/>
+
+
+        <variable
+            name="callback"
+            type="it.toninelli.mvvmkotlin.binding.RetryCallback"/>
+
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        showHide="@{resource.data == null}"
+        android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:indeterminate="true"
+        android:layout_height="wrap_content"
+        android:minHeight="23dp"
+        android:layout_marginTop="-9dp"
+        android:layout_marginBottom="-9dp"
+         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="retry"
+        android:id="@+id/retry"
+        app:showHide="@{resource.status == Status.LOADING}"
+        android:onClick="@{() -> callback.retry()}" />
+
+
+
+</LinearLayout>
+</layout>
