@@ -1,11 +1,11 @@
-package it.toninelli.mvvmkotlin.ViewModel
+package it.toninelli.mvvmkotlin.viewModel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import it.toninelli.mvvmkotlin.Model.User
+import it.toninelli.mvvmkotlin.model.User
 import it.toninelli.mvvmkotlin.Repository.UserRepo
 import it.toninelli.mvvmkotlin.util.Resource
 import javax.inject.Inject

@@ -2,12 +2,11 @@ package it.toninelli.mvvmkotlin.Di.module
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.view.View
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import it.toninelli.mvvmkotlin.Di.interfaces.ViewModelKey
-import it.toninelli.mvvmkotlin.ViewModel.*
+import it.toninelli.mvvmkotlin.viewModel.*
 
 @Module
 abstract class ViewModelModule{

@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.Model
+package it.toninelli.mvvmkotlin.model
 
 data class User(
      val id: Int,

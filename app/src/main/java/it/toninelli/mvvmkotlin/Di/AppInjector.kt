@@ -52,6 +52,8 @@ object AppInjector{
 
         }
 
+
+
         private fun handleActivity(p0: Activity?) {
             val activity = p0 ?: return
             if(activity is HasSupportFragmentInjector){

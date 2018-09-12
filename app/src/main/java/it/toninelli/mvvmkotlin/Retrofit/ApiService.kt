@@ -1,8 +1,8 @@
 package it.toninelli.mvvmkotlin.Retrofit
 
 import io.reactivex.Observable
-import it.toninelli.mvvmkotlin.Model.Post
-import it.toninelli.mvvmkotlin.Model.User
+import it.toninelli.mvvmkotlin.model.Post
+import it.toninelli.mvvmkotlin.model.User
 import retrofit2.http.GET
 import retrofit2.http.Query
 

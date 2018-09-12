@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.ViewModel
+package it.toninelli.mvvmkotlin.viewModel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
