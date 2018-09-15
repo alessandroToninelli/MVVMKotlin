@@ -6,7 +6,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import it.toninelli.mvvmkotlin.Di.interfaces.ViewModelKey
-import it.toninelli.mvvmkotlin.viewModel.*
+import it.toninelli.mvvmkotlin.ui.common.ViewModelFactory
+import it.toninelli.mvvmkotlin.ui.post.PostsViewModel
+import it.toninelli.mvvmkotlin.ui.user.UserViewModel
 
 @Module
 abstract class ViewModelModule{

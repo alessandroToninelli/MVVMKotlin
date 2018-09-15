@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.viewModel
+package it.toninelli.mvvmkotlin.ui.user
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

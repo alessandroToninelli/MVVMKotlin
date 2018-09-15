@@ -13,12 +13,12 @@ import it.toninelli.mvvmkotlin.Di.interfaces.Injectable
 
 
 import it.toninelli.mvvmkotlin.R
+import it.toninelli.mvvmkotlin.binding.RetryCallback
 import it.toninelli.mvvmkotlin.databinding.PostsFragmentBinding
-import it.toninelli.mvvmkotlin.databinding.UserFragmentBinding
-import it.toninelli.mvvmkotlin.util.AutoClearedValue
+import it.toninelli.mvvmkotlin.ui.post.PostListAdapter
 import it.toninelli.mvvmkotlin.util.autoclearedValue
-import it.toninelli.mvvmkotlin.viewModel.PostsViewModel
-import it.toninelli.mvvmkotlin.viewModel.ViewModelFactory
+import it.toninelli.mvvmkotlin.ui.post.PostsViewModel
+import it.toninelli.mvvmkotlin.util.AppExecutors
 import javax.inject.Inject
 
 class PostsFragment:Fragment(), Injectable {
@@ -26,8 +26,11 @@ class PostsFragment:Fragment(), Injectable {
     @Inject
     lateinit var factory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var appExecutors: AppExecutors
 
     var binding by autoclearedValue<PostsFragmentBinding>()
+    var adapter by autoclearedValue<PostListAdapter>()
 
     private lateinit var viewModel: PostsViewModel
 
@@ -35,6 +38,12 @@ class PostsFragment:Fragment(), Injectable {
 
         val dataBinding = DataBindingUtil.inflate<PostsFragmentBinding>(inflater,R.layout.posts_fragment,container,false)
         binding = dataBinding
+
+        dataBinding.callback = object : RetryCallback{
+            override fun retry() {
+                println("retry")
+            }
+        }
 
         return binding.root
     }
@@ -44,14 +53,25 @@ class PostsFragment:Fragment(), Injectable {
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProviders.of(this,factory).get(PostsViewModel::class.java)
-        viewModel.result.observe(this, Observer {
-            binding.resource = it
-        })
 
+
+        val postAdapter = PostListAdapter(appExecutors = appExecutors){
+            println(it)
+        }
+
+        binding.postList.adapter = postAdapter
+        this.adapter = postAdapter
+
+        initPostList()
 
     }
 
-
+    private fun initPostList() {
+        viewModel.result.observe(this, Observer {
+            binding.resource = it
+            adapter.submitList(it?.data)
+        })
+    }
 
 
 }
