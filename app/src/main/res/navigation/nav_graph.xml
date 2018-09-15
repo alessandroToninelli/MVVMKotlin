@@ -18,5 +18,9 @@
         android:id="@+id/user_fragment"
         android:name="it.toninelli.mvvmkotlin.fragment.UserFragment"
         android:label="user_fragment"
-        tools:layout="@layout/user_fragment" />
+        tools:layout="@layout/user_fragment">
+        <argument
+            android:name="idPost"
+            app:type="integer" />
+    </fragment>
 </navigation>

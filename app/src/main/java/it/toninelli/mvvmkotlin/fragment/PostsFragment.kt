@@ -19,6 +19,7 @@ import it.toninelli.mvvmkotlin.ui.post.PostListAdapter
 import it.toninelli.mvvmkotlin.util.autoclearedValue
 import it.toninelli.mvvmkotlin.ui.post.PostsViewModel
 import it.toninelli.mvvmkotlin.util.AppExecutors
+import it.toninelli.mvvmkotlin.util.findNavController
 import javax.inject.Inject
 
 class PostsFragment:Fragment(), Injectable {
@@ -36,13 +37,17 @@ class PostsFragment:Fragment(), Injectable {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val dataBinding = DataBindingUtil.inflate<PostsFragmentBinding>(inflater,R.layout.posts_fragment,container,false)
+        val dataBinding = DataBindingUtil.inflate<PostsFragmentBinding>(inflater,R.layout.post_fragment,container,false)
         binding = dataBinding
 
         dataBinding.callback = object : RetryCallback{
             override fun retry() {
                 println("retry")
             }
+        }
+
+        binding.progressBarLayout.retry.setOnClickListener {
+            println("retry from listener")
         }
 
         return binding.root
@@ -56,7 +61,8 @@ class PostsFragment:Fragment(), Injectable {
 
 
         val postAdapter = PostListAdapter(appExecutors = appExecutors){
-            println(it)
+
+            findNavController().navigate(PostsFragmentDirections.postsToUser(it.userId))
         }
 
         binding.postList.adapter = postAdapter
