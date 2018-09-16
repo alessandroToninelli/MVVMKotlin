@@ -5,7 +5,7 @@ import io.reactivex.ObservableEmitter
 import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
 import it.toninelli.mvvmkotlin.model.User
 import it.toninelli.mvvmkotlin.Retrofit.ApiService
-import it.toninelli.mvvmkotlin.util.NULL_USER
+
 
 import javax.inject.Inject
 
