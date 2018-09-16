@@ -13,6 +13,9 @@ interface ApiService{
     @GET("/posts")
     fun getPosts(): Observable<List<Post>>
 
+    @GET("/posts")
+    fun getPostById(@Query("id") id: Int): Observable<List<Post>>
+
     @GET("/users")
     fun getUser(@Query("id") id: Int): Observable<List<User>>
 }

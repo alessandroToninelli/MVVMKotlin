@@ -66,7 +66,11 @@ class PostsFragment:Fragment(), Injectable {
         binding.postList.adapter = postAdapter
         this.adapter = postAdapter
 
+
+
+
         initPostList()
+
 
     }
 
