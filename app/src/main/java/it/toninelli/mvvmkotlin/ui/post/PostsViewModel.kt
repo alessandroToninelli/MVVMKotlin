@@ -23,6 +23,7 @@ class PostsViewModel @Inject constructor(
     init {
 
         loadPosts()
+        loadPostById()
 
     }
 
