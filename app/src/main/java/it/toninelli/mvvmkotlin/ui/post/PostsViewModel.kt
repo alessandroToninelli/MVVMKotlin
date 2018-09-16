@@ -50,7 +50,7 @@ class PostsViewModel @Inject constructor(
                                 .subscribe({ println(it)},
                                         { println(it)})
                 )
-        println("ciao")
+
     }
 
 
