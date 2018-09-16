@@ -24,7 +24,7 @@ class PostsViewModel @Inject constructor(
 
         loadPosts()
         loadPostById()
-
+        println("ciao")
     }
 
     private fun loadPosts(){
