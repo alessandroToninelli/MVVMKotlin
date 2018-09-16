@@ -38,6 +38,7 @@ class PostsViewModel @Inject constructor(
     }
 
 
+
     private fun loadPostById(){
                 compositeDisposable.addAll(
                         Observable.create<List<Post>>{emitter ->
@@ -48,6 +49,7 @@ class PostsViewModel @Inject constructor(
                                 .subscribe({ println(it)},
                                         { println(it)})
                 )
+        println("ciao")
     }
 
 
