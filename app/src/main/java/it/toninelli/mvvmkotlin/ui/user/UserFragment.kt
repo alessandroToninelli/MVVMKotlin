@@ -39,7 +39,7 @@ class UserFragment: Fragment(), Injectable{
 
         dataBinding.callback = object : RetryCallback {
             override fun retry() {
-                println("retry ciao")
+                println("retry ciao caio")
             }
         }
 
