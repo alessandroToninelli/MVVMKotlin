@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/posts_fragment"
-        android:name="it.toninelli.mvvmkotlin.fragment.PostsFragment"
+        android:name="it.toninelli.mvvmkotlin.ui.post.PostsFragment"
         android:label="posts_fragment"
         tools:layout="@layout/posts_fragment">
         <action
@@ -16,11 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/user_fragment"
-        android:name="it.toninelli.mvvmkotlin.fragment.UserFragment"
+        android:name="it.toninelli.mvvmkotlin.ui.user.UserFragment"
         android:label="user_fragment"
         tools:layout="@layout/user_fragment">
         <argument
             android:name="idPost"
-            app:type="integer" />
+            app:argType="integer" />
     </fragment>
 </navigation>

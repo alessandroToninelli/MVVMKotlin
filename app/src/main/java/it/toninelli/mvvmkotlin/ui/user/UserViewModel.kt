@@ -21,17 +21,12 @@ class UserViewModel @Inject constructor(
 
 
 
-
-    fun loadUser(id: Int){
-        compositeDisposable.add(repo.getUserById(id)
+    fun loadUsers(id: Int){
+        compositeDisposable.add(repo.loadUserById(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { result.value = Resource.loading(null) }
                 .subscribe({result.value = Resource.success(it)}, {result.value = Resource.error(it.localizedMessage,null)})
-
-
-
-
 
         )
     }

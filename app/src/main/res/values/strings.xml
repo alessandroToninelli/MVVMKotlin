@@ -9,4 +9,12 @@
     <string name="post_user_id">user id:%s</string>
     <string name="post_title">title:%s</string>
     <string name="post_body">body:%s</string>
+
+
+    <string name="user_id">id:%s</string>
+    <string name="user_name">name:%s</string>
+    <string name="user_email">email:%s</string>
+    <string name="user_city">city:%s</string>
+
+
 </resources>

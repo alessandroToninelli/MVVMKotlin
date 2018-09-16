@@ -1,9 +1,11 @@
 package it.toninelli.mvvmkotlin.Repository
 
 import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
 import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
 import it.toninelli.mvvmkotlin.model.User
 import it.toninelli.mvvmkotlin.Retrofit.ApiService
+import it.toninelli.mvvmkotlin.util.NULL_USER
 
 import javax.inject.Inject
 
@@ -12,13 +14,14 @@ class UserRepo @Inject constructor(
         val apiService: ApiService
 
 ){
-    fun getUserById(userId: Int): Observable<List<User>>{
-        return apiService.getUser(userId)
-                .filter { it.isNotEmpty() }
-                .flatMap { Observable.just(it) }
 
-
-
+    fun loadUserById(id: Int): Observable<List<User>>{
+            return apiService.getUser(id)
+                        .filter { it.isNotEmpty() }
+                        .flatMap { Observable.just(it) }
     }
 
+
+
 }
+

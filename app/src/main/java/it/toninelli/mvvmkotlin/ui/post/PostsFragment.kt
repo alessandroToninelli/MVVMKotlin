@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.fragment
+package it.toninelli.mvvmkotlin.ui.post
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
@@ -15,9 +15,7 @@ import it.toninelli.mvvmkotlin.Di.interfaces.Injectable
 import it.toninelli.mvvmkotlin.R
 import it.toninelli.mvvmkotlin.binding.RetryCallback
 import it.toninelli.mvvmkotlin.databinding.PostsFragmentBinding
-import it.toninelli.mvvmkotlin.ui.post.PostListAdapter
 import it.toninelli.mvvmkotlin.util.autoclearedValue
-import it.toninelli.mvvmkotlin.ui.post.PostsViewModel
 import it.toninelli.mvvmkotlin.util.AppExecutors
 import it.toninelli.mvvmkotlin.util.findNavController
 import javax.inject.Inject
@@ -37,7 +35,7 @@ class PostsFragment:Fragment(), Injectable {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val dataBinding = DataBindingUtil.inflate<PostsFragmentBinding>(inflater,R.layout.post_fragment,container,false)
+        val dataBinding = DataBindingUtil.inflate<PostsFragmentBinding>(inflater,R.layout.posts_fragment,container,false)
         binding = dataBinding
 
         dataBinding.callback = object : RetryCallback{

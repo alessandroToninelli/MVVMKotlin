@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import it.toninelli.mvvmkotlin.Di.interfaces.FragmentScope
 import it.toninelli.mvvmkotlin.MainActivity
-import it.toninelli.mvvmkotlin.fragment.PostsFragment
-import it.toninelli.mvvmkotlin.fragment.UserFragment
+import it.toninelli.mvvmkotlin.ui.post.PostsFragment
+import it.toninelli.mvvmkotlin.ui.user.UserFragment
 
 @Module
  abstract class MainActivityModule {

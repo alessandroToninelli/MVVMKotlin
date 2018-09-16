@@ -8,10 +8,6 @@ import android.support.v4.app.FragmentActivity
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-/**
- * Classe per cancellare automaticamente alune proprietà del fragment che se venissero chiamate quando è distrutto causerebbero eccezzioni
- */
-
 
 class AutoClearedValue<T: Any>(val fragment: Fragment) : ReadWriteProperty<Fragment,T> {
 
