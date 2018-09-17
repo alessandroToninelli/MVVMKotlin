@@ -28,24 +28,11 @@ class PostRepo @Inject constructor( val apiService: ApiService){
     }
 
 
-    fun loadPostById(emitter: ObservableEmitter<List<Post>>){
-        this.emitter = emitter
+    fun getPostById(id: Int):Observable<List<Post>>{
+        return apiService.getPostById(id)
+                .filter{ it.isNotEmpty()
+                }
     }
-
-    fun  setId(id: Int){
-        disposable = apiService.getPostById(id)
-                .subscribeOn(Schedulers.io())
-                .doOnComplete { disposable.dispose() }
-                .doOnNext {emitter.onNext(it)}
-                .filter { it.isNotEmpty() }
-                .subscribe()
-
-    }
-
-
-
-
-
 
     fun clear() = disposable.dispose()
 

@@ -39,7 +39,7 @@ class UserFragment: Fragment(), Injectable{
 
         dataBinding.callback = object : RetryCallback {
             override fun retry() {
-                println("retry")
+               viewModel.retry()
             }
         }
 
@@ -60,7 +60,7 @@ class UserFragment: Fragment(), Injectable{
         viewModel = ViewModelProviders.of(this,factory).get(UserViewModel::class.java)
         val params = UserFragmentArgs.fromBundle(arguments)
 
-        viewModel.loadUsers(params.idPost)
+        viewModel.setId(params.idPost)
 
         initUserList()
 
