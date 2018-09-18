@@ -3,12 +3,8 @@ package it.toninelli.mvvmkotlin.ui.user
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-import it.toninelli.mvvmkotlin.model.User
-import it.toninelli.mvvmkotlin.Repository.UserRepo
-import it.toninelli.mvvmkotlin.util.Resource
+import it.toninelli.mvvmkotlin.repository.UserRepo
 import it.toninelli.mvvmkotlin.util.TransformationsRx
 import javax.inject.Inject
 

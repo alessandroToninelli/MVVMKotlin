@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dagger.multibindings.IntKey
-import it.toninelli.mvvmkotlin.Di.interfaces.Injectable
+import it.toninelli.mvvmkotlin.di.interfaces.Injectable
 import it.toninelli.mvvmkotlin.R
 import it.toninelli.mvvmkotlin.binding.RetryCallback
 import it.toninelli.mvvmkotlin.databinding.UserFragmentBinding

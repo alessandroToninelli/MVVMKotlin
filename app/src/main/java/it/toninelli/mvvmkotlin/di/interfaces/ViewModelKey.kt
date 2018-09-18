@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.Di.interfaces
+package it.toninelli.mvvmkotlin.di.interfaces
 
 import android.arch.lifecycle.ViewModel
 import dagger.MapKey

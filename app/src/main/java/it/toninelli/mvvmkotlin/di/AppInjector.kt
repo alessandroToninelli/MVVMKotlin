@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.Di
+package it.toninelli.mvvmkotlin.di
 
 import android.app.Activity
 import android.app.Application
@@ -12,8 +12,8 @@ import dagger.android.AndroidInjector
 import dagger.android.HasFragmentInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
-import it.toninelli.mvvmkotlin.Di.component.DaggerAppComponent
-import it.toninelli.mvvmkotlin.Di.interfaces.Injectable
+import it.toninelli.mvvmkotlin.di.component.DaggerAppComponent
+import it.toninelli.mvvmkotlin.di.interfaces.Injectable
 import it.toninelli.mvvmkotlin.MVVMApp
 
 
