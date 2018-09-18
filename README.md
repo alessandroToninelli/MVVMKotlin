@@ -19,6 +19,6 @@ Then the ViewModel communicates with the Respository via rxJava, between UI and 
 * DataBinding
   
   
-Now there is no data saving on Room, it will soon be introduced
+Now there is no data saving on Room, it will soon be introduced with the Clean Architecture
 
  I will constantly update the project to include new features and architectures.
