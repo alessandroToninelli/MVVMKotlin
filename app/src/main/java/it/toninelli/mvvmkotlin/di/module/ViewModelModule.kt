@@ -10,7 +10,7 @@ import it.toninelli.mvvmkotlin.ui.common.ViewModelFactory
 import it.toninelli.mvvmkotlin.ui.post.PostsViewModel
 import it.toninelli.mvvmkotlin.ui.user.UserViewModel
 
-@Module
+@Module(includes = [ViewModelFactoryModule::class])
 abstract class ViewModelModule{
 
     @Binds
@@ -24,8 +24,6 @@ abstract class ViewModelModule{
     abstract fun bindPostViewModel(postsViewModel: PostsViewModel):ViewModel
 
 
-    @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 
 
