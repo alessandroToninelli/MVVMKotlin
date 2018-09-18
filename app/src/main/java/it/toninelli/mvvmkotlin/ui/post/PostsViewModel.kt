@@ -35,10 +35,9 @@ class PostsViewModel @Inject constructor(
     }
 
     fun retry(){
-        if(result.value == null){
-            compositeDisposable.clear()
-            loadPosts()
-        }
+        compositeDisposable.clear()
+        loadPosts()
+
     }
 
     override fun onCleared() {
