@@ -66,6 +66,9 @@ dependencies {
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions
 
+    implementation deps.paging.runtime
+    implementation deps.paging.rxjava
+
     kapt deps.lifecycle.compiler
 
     implementation deps.lifecycle.react
