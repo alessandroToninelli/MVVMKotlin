@@ -1,10 +1,9 @@
-package it.toninelli.mvvmkotlin.Repository
+package it.toninelli.mvvmkotlin.repository
 
 import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
+import it.toninelli.mvvmkotlin.di.interfaces.ApplicationScope
 import it.toninelli.mvvmkotlin.model.User
-import it.toninelli.mvvmkotlin.Retrofit.ApiService
+import it.toninelli.mvvmkotlin.retrofit.ApiService
 
 
 import javax.inject.Inject

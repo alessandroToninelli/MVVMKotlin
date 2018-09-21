@@ -2,7 +2,7 @@ package it.toninelli.mvvmkotlin.ui.common
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
+import it.toninelli.mvvmkotlin.di.interfaces.ApplicationScope
 import javax.inject.Inject
 import javax.inject.Provider
 

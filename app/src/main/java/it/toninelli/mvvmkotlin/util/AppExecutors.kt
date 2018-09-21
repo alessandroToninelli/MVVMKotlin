@@ -2,7 +2,7 @@ package it.toninelli.mvvmkotlin.util
 
 import android.os.Handler
 import android.os.Looper
-import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
+import it.toninelli.mvvmkotlin.di.interfaces.ApplicationScope
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Inject

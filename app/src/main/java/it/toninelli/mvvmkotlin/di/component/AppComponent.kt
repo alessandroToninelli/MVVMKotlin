@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.Di.component
+package it.toninelli.mvvmkotlin.di.component
 
 import android.app.Application
 import android.content.Context
@@ -8,10 +8,10 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 
 import dagger.android.support.AndroidSupportInjectionModule
-import it.toninelli.mvvmkotlin.Di.interfaces.AppContext
-import it.toninelli.mvvmkotlin.Di.interfaces.ApplicationScope
-import it.toninelli.mvvmkotlin.Di.module.AppModule
-import it.toninelli.mvvmkotlin.Di.module.SubComponentBuilder
+import it.toninelli.mvvmkotlin.di.interfaces.AppContext
+import it.toninelli.mvvmkotlin.di.interfaces.ApplicationScope
+import it.toninelli.mvvmkotlin.di.module.AppModule
+import it.toninelli.mvvmkotlin.di.module.SubComponentBuilder
 import it.toninelli.mvvmkotlin.MVVMApp
 
 @ApplicationScope

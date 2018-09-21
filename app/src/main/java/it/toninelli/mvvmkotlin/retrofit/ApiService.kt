@@ -1,4 +1,4 @@
-package it.toninelli.mvvmkotlin.Retrofit
+package it.toninelli.mvvmkotlin.retrofit
 
 import io.reactivex.Observable
 import it.toninelli.mvvmkotlin.model.Post

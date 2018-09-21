@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import it.toninelli.mvvmkotlin.Di.interfaces.Injectable
+import it.toninelli.mvvmkotlin.di.interfaces.Injectable
 
 
 import it.toninelli.mvvmkotlin.R
@@ -40,7 +40,7 @@ class PostsFragment:Fragment(), Injectable {
 
         dataBinding.callback = object : RetryCallback{
             override fun retry() {
-                println("retry")
+                viewModel.retry()
             }
         }
 
@@ -59,14 +59,12 @@ class PostsFragment:Fragment(), Injectable {
 
 
         val postAdapter = PostListAdapter(appExecutors = appExecutors){
-
             findNavController().navigate(PostsFragmentDirections.postsToUser(it.userId))
         }
 
+
         binding.postList.adapter = postAdapter
         this.adapter = postAdapter
-
-
 
 
         initPostList()

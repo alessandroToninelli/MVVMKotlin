@@ -5,7 +5,7 @@ import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import it.toninelli.mvvmkotlin.Di.AppInjector
+import it.toninelli.mvvmkotlin.di.AppInjector
 import javax.inject.Inject
 
 

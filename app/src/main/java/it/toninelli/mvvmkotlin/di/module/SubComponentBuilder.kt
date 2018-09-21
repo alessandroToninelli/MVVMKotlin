@@ -1,11 +1,11 @@
-package it.toninelli.mvvmkotlin.Di.module
+package it.toninelli.mvvmkotlin.di.module
 
 import android.content.Context
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import it.toninelli.mvvmkotlin.Di.interfaces.ActivityScope
-import it.toninelli.mvvmkotlin.Di.interfaces.AppContext
+import it.toninelli.mvvmkotlin.di.interfaces.ActivityScope
+import it.toninelli.mvvmkotlin.di.interfaces.AppContext
 import it.toninelli.mvvmkotlin.MainActivity
 
 
