@@ -15,7 +15,7 @@ class UserViewModel @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
     private val id = MutableLiveData<Int>()
-    val result = TransformationsRx.switchMapRx(id){
+    val result = TransformationsRx.mapRx(id){
         if(it!= null){
             repo.loadUserById(it)
         }else{
