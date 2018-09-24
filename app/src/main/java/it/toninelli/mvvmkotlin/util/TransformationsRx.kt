@@ -15,7 +15,7 @@ class TransformationsRx {
     companion object {
 
         @MainThread
-        fun <X,  Y> switchMapRx(trigger: LiveData<X>, func: (X?) -> Observable<Y>):LiveData<Resource<Y>> {
+        fun <X,  Y> mapRx(trigger: LiveData<X>, func: (X?) -> Observable<Y>):LiveData<Resource<Y>> {
             val result =  MediatorLiveData<Resource<Y>>()
             result.addSource(trigger){ id ->
                 val newObs = func(id)
