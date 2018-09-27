@@ -100,7 +100,7 @@ dependencies {
     implementation deps.navigation.runtime
     implementation deps.navigation.runtime_ktx
     implementation deps.navigation.fragment_ktx
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 
 
 }
