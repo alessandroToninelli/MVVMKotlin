@@ -13,10 +13,7 @@ import javax.inject.Inject
 @ApplicationScope
 class PostRepo @Inject constructor( val apiService: ApiService){
 
-    lateinit var emitter : ObservableEmitter<List<Post>>
 
-
-    lateinit var disposable: Disposable
 
     fun getPosts(): Observable<List<Post>> {
         return apiService.getPosts()
@@ -31,7 +28,7 @@ class PostRepo @Inject constructor( val apiService: ApiService){
                 }
     }
 
-    fun clear() = disposable.dispose()
+
 
 
 

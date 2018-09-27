@@ -42,6 +42,5 @@ class PostsViewModel @Inject constructor(
 
     override fun onCleared() {
         compositeDisposable.clear()
-        repo.clear()
     }
 }
