@@ -3,6 +3,7 @@ package it.toninelli.mvvmkotlin.retrofit
 import io.reactivex.Observable
 import it.toninelli.mvvmkotlin.model.Post
 import it.toninelli.mvvmkotlin.model.User
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -11,7 +12,7 @@ interface ApiService{
 
 
     @GET("/posts")
-    fun getPosts(): Observable<List<Post>>
+    fun getPosts(): Observable<Response<List<Post>>>
 
     @GET("/posts")
     fun getPostById(@Query("id") id: Int): Observable<List<Post>>

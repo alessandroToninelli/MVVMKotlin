@@ -16,6 +16,9 @@
             name="callback"
             type="it.toninelli.mvvmkotlin.binding.RetryCallback"/>
 
+        <variable
+            name="loadingMore"
+            type="Boolean"/>
 
 
     </data>
@@ -23,7 +26,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        showHide="@{resource.data == null}"
+        app:showHide="@{resource.data == null || loadingMore == true}"
         android:orientation="vertical">
 
         <ProgressBar
@@ -32,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-9dp"
-            showHide="@{resource.status == Status.LOADING}"
+            app:testProgress="@{resource.status == Status.LOADING || loadingMore == true}"
             android:layout_marginBottom="-9dp"
             android:indeterminate="true"
             android:minHeight="23dp"

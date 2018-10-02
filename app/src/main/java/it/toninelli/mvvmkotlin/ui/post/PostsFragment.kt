@@ -29,7 +29,7 @@ class PostsFragment:Fragment(), Injectable {
     lateinit var appExecutors: AppExecutors
 
     var binding by autoclearedValue<PostsFragmentBinding>()
-    var adapter by autoclearedValue<PostListAdapter>()
+    var adapter by autoclearedValue<PostsPagedAdapter>()
 
     private lateinit var viewModel: PostsViewModel
 
@@ -44,10 +44,6 @@ class PostsFragment:Fragment(), Injectable {
             }
         }
 
-        binding.progressBarLayout.retry.setOnClickListener {
-            println("retry from listener")
-        }
-
         return binding.root
     }
 
@@ -58,7 +54,7 @@ class PostsFragment:Fragment(), Injectable {
         viewModel = ViewModelProviders.of(this,factory).get(PostsViewModel::class.java)
 
 
-        val postAdapter = PostListAdapter(appExecutors = appExecutors){
+        val postAdapter = PostsPagedAdapter(appExecutors = appExecutors){
             findNavController().navigate(PostsFragmentDirections.postsToUser(it.userId))
         }
 
@@ -75,7 +71,15 @@ class PostsFragment:Fragment(), Injectable {
     private fun initPostList() {
         viewModel.result.observe(this, Observer {
             binding.resource = it
-            adapter.submitList(it?.data)
+            println("resource ${it?.status}")
+            it?.data?.let {
+                adapter.submitList(it)
+            }
+        })
+
+        viewModel.networkState.observe(this, Observer {
+            println("networkState: ${it?.status}")
+            binding.loadingMore = adapter.setLoadState(it)
         })
     }
 

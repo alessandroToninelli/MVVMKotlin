@@ -13,7 +13,9 @@
             name="callback"
             type="it.toninelli.mvvmkotlin.binding.RetryCallback"/>
 
-
+        <variable
+            name="loadingMore"
+            type="Boolean"/>
 
     </data>
 
@@ -28,6 +30,7 @@
     <include layout="@layout/progressbar"
             app:resource = "@{resource}"
             app:callback = "@{callback::retry}"
+            app:loadingMore = "@{loadingMore}"
             android:id="@+id/progressBar_layout"
 
         />
