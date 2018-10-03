@@ -8,6 +8,7 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import it.toninelli.mvvmkotlin.di.interfaces.ApplicationScope
 import it.toninelli.mvvmkotlin.model.Post
+import it.toninelli.mvvmkotlin.model.RedditPost
 import it.toninelli.mvvmkotlin.repository.Listing
 import it.toninelli.mvvmkotlin.retrofit.ApiService
 import it.toninelli.mvvmkotlin.util.AppExecutors
@@ -38,7 +39,7 @@ class PostRepo @Inject constructor(
 
 
 
-    fun getPostsPaged(pageSize: Int, compositeDisposable: CompositeDisposable):Listing<Post>{
+    fun getPostsPaged(pageSize: Int, compositeDisposable: CompositeDisposable):Listing<RedditPost>{
         val sourceFactory = PostDataSourceFactory(apiService,appExecutors.networkIO(),compositeDisposable)
         val config = PagedList.Config.Builder()
                 .setPageSize(pageSize)

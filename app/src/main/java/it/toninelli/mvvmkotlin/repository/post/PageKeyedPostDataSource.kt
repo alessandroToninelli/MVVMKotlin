@@ -2,12 +2,14 @@ package it.toninelli.mvvmkotlin.repository.post
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.ItemKeyedDataSource
+import android.arch.paging.PageKeyedDataSource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 import it.toninelli.mvvmkotlin.model.Post
+import it.toninelli.mvvmkotlin.model.RedditPost
 import it.toninelli.mvvmkotlin.repository.NetworkState
 import it.toninelli.mvvmkotlin.retrofit.ApiService
 import java.util.concurrent.Executor
@@ -15,11 +17,11 @@ import it.toninelli.mvvmkotlin.repository.NetworkState.Companion.LOADED
 import it.toninelli.mvvmkotlin.repository.NetworkState.Companion.LOADING
 
 
-class ItemKeyedPostDataSource(
+class PageKeyedPostDataSource(
         private val apiService: ApiService,
         private val executor: Executor,
         private val compositeDisposable: CompositeDisposable
-        ) : ItemKeyedDataSource<Int, Post>(){
+        ) : PageKeyedDataSource<String, RedditPost>(){
 
 
 
@@ -40,23 +42,24 @@ class ItemKeyedPostDataSource(
     }
 
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Post>) {
+    override fun loadInitial(params: LoadInitialParams<String>, callback: LoadInitialCallback<String,RedditPost>) {
 
 
 
         networkState.postValue(NetworkState.LOADING)
         initialLoad.postValue(NetworkState.LOADING)
 
-        compositeDisposable.add(apiService.getPosts()
-                .flatMap { Observable.fromArray(it.body() ?: emptyList()) }
+        compositeDisposable.add(apiService.getTop("androiddev",params.requestedLoadSize)
+                .flatMap { response -> Observable.just(response.body()?.data)}
                 .subscribe({
                     retry = null
                     networkState.postValue(NetworkState.LOADED)
                     initialLoad.postValue(NetworkState.LOADED)
-                    callback.onResult(it)
+                    println("before: ${it?.before} and after ${it?.after}")
+                    callback.onResult(it?.children?.map { it.data }?: emptyList(),it?.before, it?.after)
                 },{
                     retry = {
-                        loadInitial(params,callback)
+                       loadInitial(params,callback)
                     }
                     val error = NetworkState.error(it.message)
                     networkState.postValue(error)
@@ -66,17 +69,19 @@ class ItemKeyedPostDataSource(
 
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Post>) {
+    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String,RedditPost>) {
 
 
+        println("parametro: ${params.key}")
 
         networkState.postValue(NetworkState.LOADING)
-        compositeDisposable.add(apiService.getPosts()
-                .flatMap { Observable.fromArray(it.body() ?: emptyList()) }
+        compositeDisposable.add(apiService.getTopAfter("androiddev", params.key,params.requestedLoadSize)
+                .flatMap { response -> Observable.just(response.body()?.data)}
                 .subscribe({
                     retry = null
                     networkState.postValue(NetworkState.LOADED)
-                    callback.onResult(it)
+                    initialLoad.postValue(NetworkState.LOADED)
+                    callback.onResult(it?.children?.map { it.data }?: emptyList(),it?.after)
                 },{
                     retry = {
                         loadAfter(params,callback)
@@ -89,14 +94,12 @@ class ItemKeyedPostDataSource(
 
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Post>) {
+    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String,RedditPost>) {
 
     //ignore
 
     }
 
-
-    override fun getKey(item: Post) = item.id
 
 
 

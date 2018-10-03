@@ -102,6 +102,9 @@ dependencies {
     implementation deps.navigation.fragment_ktx
 
 
+    implementation deps.okhttp.okhttp3
+    implementation deps.okhttp.interceptor
+
 
 }
 repositories {

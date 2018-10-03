@@ -18,7 +18,11 @@ import it.toninelli.mvvmkotlin.databinding.PostsFragmentBinding
 import it.toninelli.mvvmkotlin.util.autoclearedValue
 import it.toninelli.mvvmkotlin.util.AppExecutors
 import it.toninelli.mvvmkotlin.util.findNavController
+import it.toninelli.mvvmkotlin.repository.NetworkState.Companion.LOADED
+import it.toninelli.mvvmkotlin.repository.NetworkState.Companion.LOADING
 import javax.inject.Inject
+import  it.toninelli.mvvmkotlin.repository.NetworkState
+
 
 class PostsFragment:Fragment(), Injectable {
 
@@ -48,38 +52,44 @@ class PostsFragment:Fragment(), Injectable {
     }
 
 
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProviders.of(this,factory).get(PostsViewModel::class.java)
 
-
         val postAdapter = PostsPagedAdapter(appExecutors = appExecutors){
-            findNavController().navigate(PostsFragmentDirections.postsToUser(it.userId))
-        }
-
+            println(it) }
 
         binding.postList.adapter = postAdapter
         this.adapter = postAdapter
 
-
+        initRefreshLayout()
         initPostList()
 
+    }
 
+    private fun initRefreshLayout() {
+        viewModel.refreshState.observe(this, Observer {
+            binding.swipeRefresh.isRefreshing = it == NetworkState.LOADING
+        })
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.refresh()
+        }
     }
 
     private fun initPostList() {
         viewModel.result.observe(this, Observer {
-            binding.resource = it
-            println("resource ${it?.status}")
             it?.data?.let {
                 adapter.submitList(it)
             }
         })
 
         viewModel.networkState.observe(this, Observer {
-            println("networkState: ${it?.status}")
-            binding.loadingMore = adapter.setLoadState(it)
+            println(it)
+            binding.netState = it
         })
     }
 

@@ -35,27 +35,5 @@ abstract class DataBoundPagedAdapter<T, V: ViewDataBinding>(
         bind(holder.binding, getItem(position)!!)
     }
 
-    override fun getItemCount(): Int {
-        return super.getItemCount() + if (hasExtraRow()) 1 else 0
-    }
 
-    protected fun hasExtraRow() = networkState!= null && networkState != NetworkState.LOADED
-
-
-      fun setLoadState(newNetworkState: NetworkState?): Boolean {
-        val previousState = this.networkState
-        val hadExtraRow = hasExtraRow()
-         println("hadExtraRow $hadExtraRow")
-        this.networkState = newNetworkState
-        val hasExtraRow = hasExtraRow()
-         println("hasExtraRow $hasExtraRow")
-        if (hadExtraRow != hasExtraRow) {
-            println("valore di ritorno ${!hadExtraRow}")
-            println("itemCount $itemCount")
-            return !hadExtraRow
-        } else {
-            println("ramo else")
-            return false
-        }
-    }
 }

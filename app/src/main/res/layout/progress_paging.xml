@@ -9,17 +9,17 @@
 
         <import type="it.toninelli.mvvmkotlin.repository.NetworkState"/>
 
-        <import type="it.toninelli.mvvmkotlin.repository.NetworkState.Companion"/>
-
         <variable
             name="resource"
             type="it.toninelli.mvvmkotlin.util.Resource"/>
-
 
         <variable
             name="callback"
             type="it.toninelli.mvvmkotlin.binding.RetryCallback"/>
 
+        <variable
+            name="netState"
+            type="it.toninelli.mvvmkotlin.repository.NetworkState"/>
 
 
     </data>
@@ -27,7 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:showHide="@{resource.data == null}"
+        app:showHide="@{netState.status != Status.SUCCESS}"
         android:orientation="vertical">
 
         <ProgressBar
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-9dp"
-            app:showHide="@{resource.status == Status.LOADING }"
+            app:showHide="@{netState.status == Status.LOADING}"
             android:layout_marginBottom="-9dp"
             android:indeterminate="true"
             android:minHeight="23dp"
@@ -49,17 +49,18 @@
             android:layout_weight="1"
             />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="retry"
-        android:gravity="center"
-        android:layout_gravity="bottom"
-        android:id="@+id/retry"
-        app:showHide="@{resource.status == Status.ERROR}"
-        android:onClick="@{() -> callback.retry()}" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="retry"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:id="@+id/retry"
+            android:visibility="gone"
+            app:showHide="@{netState.status == Status.ERROR}"
+            android:onClick="@{() -> callback.retry()}" />
 
 
 
-</LinearLayout>
+    </LinearLayout>
 </layout>

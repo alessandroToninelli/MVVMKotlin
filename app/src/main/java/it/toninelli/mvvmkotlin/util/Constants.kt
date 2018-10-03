@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 
 const val BASE_URL: String = "https://jsonplaceholder.typicode.com"
 
+const val BASE_URL2 = "https://www.reddit.com/"
 
 fun Fragment.findNavController() : NavController = NavHostFragment.findNavController(this)
 fun Activity.findNavController(@IdRes view: Int) : NavController = Navigation.findNavController(this,view)

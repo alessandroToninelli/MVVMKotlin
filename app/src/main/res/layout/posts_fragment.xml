@@ -5,17 +5,15 @@
 
     <data>
 
-        <variable
-            name="resource"
-            type="it.toninelli.mvvmkotlin.util.Resource"/>
+        <import type="it.toninelli.mvvmkotlin.util.Status"/>
 
         <variable
             name="callback"
             type="it.toninelli.mvvmkotlin.binding.RetryCallback"/>
 
         <variable
-            name="loadingMore"
-            type="Boolean"/>
+            name="netState"
+            type="it.toninelli.mvvmkotlin.repository.NetworkState"/>
 
     </data>
 
@@ -27,13 +25,17 @@
     >
 
 
-    <include layout="@layout/progressbar"
-            app:resource = "@{resource}"
+    <include layout="@layout/progress_paging"
             app:callback = "@{callback::retry}"
-            app:loadingMore = "@{loadingMore}"
+            app:netState = "@{netState}"
             android:id="@+id/progressBar_layout"
 
         />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -44,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            app:showHide="@{resource.data != null}"
+            app:showHide="@{netState.status == Status.SUCCESS}"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +54,8 @@
             tools:listitem="@layout/post_item"
             android:id="@+id/post_list" />
 
+    </android.support.v4.widget.SwipeRefreshLayout>
     </android.support.constraint.ConstraintLayout>
+
 
 </layout>

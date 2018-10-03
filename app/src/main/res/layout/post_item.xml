@@ -7,7 +7,7 @@
     <data>
         <variable
             name="post"
-            type="it.toninelli.mvvmkotlin.model.Post"/>
+            type="it.toninelli.mvvmkotlin.model.RedditPost"/>
 
     </data>
 
@@ -40,7 +40,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:padding="10dp"
-                android:text="@{@string/post_id(post.id)}"
+                android:text="@{post.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +52,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:padding="10dp"
-                android:text="@{@string/post_user_id(post.userId)}"
+                android:text="@{post.title}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_id" />
@@ -64,7 +64,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:padding="10dp"
-                android:text="@{@string/post_title(post.title)}"
+                android:text="@{post.author}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_user_id" />
@@ -76,7 +76,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:padding="10dp"
-                android:text="@{@string/post_body(post.body)}"
+                android:text="@{post.subreddit}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_title" />

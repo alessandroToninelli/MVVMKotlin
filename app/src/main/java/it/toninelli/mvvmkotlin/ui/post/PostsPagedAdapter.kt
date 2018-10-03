@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import it.toninelli.mvvmkotlin.R
 import it.toninelli.mvvmkotlin.databinding.PostItemBinding
 import it.toninelli.mvvmkotlin.model.Post
+import it.toninelli.mvvmkotlin.model.RedditPost
 import it.toninelli.mvvmkotlin.repository.NetworkState
 import it.toninelli.mvvmkotlin.ui.common.DataBoundPagedAdapter
 import it.toninelli.mvvmkotlin.util.AppExecutors
@@ -14,17 +15,16 @@ import it.toninelli.mvvmkotlin.util.AppExecutors
 
 class PostsPagedAdapter(
         appExecutors: AppExecutors,
-        private val callback: ((Post)-> Unit)
-):DataBoundPagedAdapter<Post,PostItemBinding>(
+        private val callback: ((RedditPost)-> Unit)
+):DataBoundPagedAdapter<RedditPost,PostItemBinding>(
         appExecutors = appExecutors,
-        diffCallback = object : DiffUtil.ItemCallback<Post>(){
-            override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
-                println("oldItem: $oldItem e newItem $newItem")
-                return oldItem.id == newItem.id
+        diffCallback = object : DiffUtil.ItemCallback<RedditPost>(){
+            override fun areItemsTheSame(oldItem: RedditPost, newItem: RedditPost): Boolean {
+                return oldItem.name == newItem.name
             }
 
-            override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
-                return oldItem.body == newItem.body
+            override fun areContentsTheSame(oldItem: RedditPost, newItem: RedditPost): Boolean {
+                return oldItem.title == newItem.title
             }
 
         }
@@ -45,7 +45,8 @@ class PostsPagedAdapter(
         return binding
     }
 
-    override fun bind(binding: PostItemBinding, item: Post) {
+    override fun bind(binding: PostItemBinding, item: RedditPost) {
+        println(item.name)
         binding.post = item
 
     }

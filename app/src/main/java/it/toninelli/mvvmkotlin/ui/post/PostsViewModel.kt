@@ -8,6 +8,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import it.toninelli.mvvmkotlin.model.Post
+import it.toninelli.mvvmkotlin.model.RedditPost
 import it.toninelli.mvvmkotlin.repository.Listing
 import it.toninelli.mvvmkotlin.repository.post.PostRepo
 import it.toninelli.mvvmkotlin.util.Resource
@@ -19,9 +20,9 @@ class PostsViewModel @Inject constructor(
 
     private val compositeDisposable =  CompositeDisposable()
 
-    val result = MutableLiveData<Resource<PagedList<Post>>>()
+    val result = MutableLiveData<Resource<PagedList<RedditPost>>>()
 
-    var reporesult = repo.getPostsPaged(10,compositeDisposable)
+    var reporesult = repo.getPostsPaged(2,compositeDisposable)
     val networkState = reporesult.networkState
     val refreshState = reporesult.refreshState
 
@@ -29,17 +30,6 @@ class PostsViewModel @Inject constructor(
         loadPosts()
 
     }
-
-//    private fun loadPosts(){
-//        compositeDisposable.addAll(
-//                repo.getPosts()
-//                        .subscribeOn(Schedulers.io())
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .doOnSubscribe { result.value = Resource.loading(null) }
-//                        .subscribe({result.value = Resource.success(it)},
-//                                {result.value = Resource.error(it.localizedMessage,null)})
-//        )
-//    }
 
 
     private fun loadPosts(){
@@ -57,11 +47,6 @@ class PostsViewModel @Inject constructor(
 
     }
 
-//    fun retry(){
-//        compositeDisposable.clear()
-//        loadPosts()
-//
-//    }
 
     fun retry(){
         reporesult.retry.invoke()
