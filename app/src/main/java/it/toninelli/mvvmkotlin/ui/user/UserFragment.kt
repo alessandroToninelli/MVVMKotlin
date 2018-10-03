@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import it.toninelli.mvvmkotlin.ui.user.UserListAdapter
 import android.view.ViewGroup
 import dagger.multibindings.IntKey
 import it.toninelli.mvvmkotlin.di.interfaces.Injectable
@@ -43,7 +44,7 @@ class UserFragment: Fragment(), Injectable{
             }
         }
 
-        val userAdapter = UserListAdapter(appExecutors = appExecutors){
+        val userAdapter = UserListAdapter(appExecutors = appExecutors) {
             println("user cliccato: $it")
         }
 

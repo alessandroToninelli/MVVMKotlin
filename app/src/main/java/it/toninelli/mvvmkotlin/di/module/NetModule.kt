@@ -5,7 +5,8 @@ import dagger.Provides
 import it.toninelli.mvvmkotlin.util.BASE_URL
 import it.toninelli.mvvmkotlin.di.interfaces.ApplicationScope
 import it.toninelli.mvvmkotlin.retrofit.ApiService
-import it.toninelli.mvvmkotlin.util.BASE_URL2
+import it.toninelli.mvvmkotlin.util.BASE_URL_POST
+import it.toninelli.mvvmkotlin.util.BASE_URL_USER
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,9 +21,10 @@ class NetModule{
 
     @ApplicationScope
     @Provides
-    fun provideApiService(httpClient: OkHttpClient):ApiService{
+    @Named("api_post")
+    fun provideApiServicePost(httpClient: OkHttpClient):ApiService{
         return Retrofit.Builder()
-                .baseUrl(BASE_URL2)
+                .baseUrl(BASE_URL_POST)
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -30,6 +32,18 @@ class NetModule{
                 .create(ApiService::class.java)
     }
 
+    @ApplicationScope
+    @Provides
+    @Named("api_user")
+    fun provideApiServiceUser(httpClient: OkHttpClient):ApiService{
+        return Retrofit.Builder()
+                .baseUrl(BASE_URL_USER)
+                .client(httpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+                .create(ApiService::class.java)
+    }
 
 
     @ApplicationScope

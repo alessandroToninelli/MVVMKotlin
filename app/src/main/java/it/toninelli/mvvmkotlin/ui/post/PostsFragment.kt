@@ -22,7 +22,8 @@ import it.toninelli.mvvmkotlin.repository.NetworkState.Companion.LOADED
 import it.toninelli.mvvmkotlin.repository.NetworkState.Companion.LOADING
 import javax.inject.Inject
 import  it.toninelli.mvvmkotlin.repository.NetworkState
-
+import it.toninelli.mvvmkotlin.ui.post.PostsPagedAdapter
+import java.util.concurrent.ThreadLocalRandom
 
 class PostsFragment:Fragment(), Injectable {
 
@@ -59,8 +60,11 @@ class PostsFragment:Fragment(), Injectable {
 
         viewModel = ViewModelProviders.of(this,factory).get(PostsViewModel::class.java)
 
-        val postAdapter = PostsPagedAdapter(appExecutors = appExecutors){
-            println(it) }
+        val postAdapter = PostsPagedAdapter(appExecutors = appExecutors) {
+            //TODO I randomly generate an integer because I have a JSON in response that is from another site than the post
+            findNavController().navigate(PostsFragmentDirections.postsToUser(ThreadLocalRandom.current().nextInt(1,10)))
+
+        }
 
         binding.postList.adapter = postAdapter
         this.adapter = postAdapter
@@ -82,15 +86,18 @@ class PostsFragment:Fragment(), Injectable {
 
     private fun initPostList() {
         viewModel.result.observe(this, Observer {
+            println(it?.status)
+            binding.resource = it
             it?.data?.let {
                 adapter.submitList(it)
             }
         })
 
         viewModel.networkState.observe(this, Observer {
-            println(it)
             binding.netState = it
         })
+
+
     }
 
 

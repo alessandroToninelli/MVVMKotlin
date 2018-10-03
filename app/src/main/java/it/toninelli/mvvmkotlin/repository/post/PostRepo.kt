@@ -14,12 +14,13 @@ import it.toninelli.mvvmkotlin.retrofit.ApiService
 import it.toninelli.mvvmkotlin.util.AppExecutors
 
 import javax.inject.Inject
+import javax.inject.Named
 
 
 @ApplicationScope
 class PostRepo @Inject constructor(
-       private  val apiService: ApiService,
-       private val appExecutors: AppExecutors){
+        @Named("api_post") private  val apiService: ApiService,
+        private val appExecutors: AppExecutors){
 
 
 
@@ -39,8 +40,8 @@ class PostRepo @Inject constructor(
 
 
 
-    fun getPostsPaged(pageSize: Int, compositeDisposable: CompositeDisposable):Listing<RedditPost>{
-        val sourceFactory = PostDataSourceFactory(apiService,appExecutors.networkIO(),compositeDisposable)
+    fun getPostsPaged(pageSize: Int):Listing<RedditPost>{
+        val sourceFactory = PostDataSourceFactory(apiService,appExecutors.networkIO())
         val config = PagedList.Config.Builder()
                 .setPageSize(pageSize)
                 .setInitialLoadSizeHint(pageSize*2)
@@ -50,11 +51,18 @@ class PostRepo @Inject constructor(
         val refreshState = Transformations.switchMap(sourceFactory.postDataSourceLiveData){
             it.initialLoad
         }
+
+
         val networkState = Transformations.switchMap(sourceFactory.postDataSourceLiveData){
             it.networkState
         }
 
+
+
         return Listing(
+
+                dataSource = sourceFactory.postDataSourceLiveData,
+
                 pagedList = pagedList,
                 networkState = networkState,
                 retry = {
@@ -63,7 +71,12 @@ class PostRepo @Inject constructor(
                 refresh = {
                     sourceFactory.postDataSourceLiveData.value?.invalidate()
                 },
-                refreshState = refreshState
+                refreshState = refreshState,
+
+                clear = {
+                    sourceFactory.postDataSourceLiveData.value?.clear()
+                }
+
         )
 
     }

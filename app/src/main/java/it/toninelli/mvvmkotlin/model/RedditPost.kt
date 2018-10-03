@@ -18,6 +18,8 @@ package it.toninelli.mvvmkotlin.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
+import java.util.concurrent.ThreadLocalRandom
 
 
 data class RedditPost(
@@ -38,14 +40,22 @@ data class RedditPost(
         @SerializedName("created_utc")
         val created: Long,
         val thumbnail: String?,
-        val url: String?) {
+        val url: String?
+
+
+)
+
+
+
+{
+
+
     // to be consistent w/ changing backend order, we need to keep a data like this
     var indexInResponse: Int = -1
 }
 
-
-
-
+fun IntRange.random() =
+        Random().nextInt((endInclusive + 1) - start) +  start
 
 class ListingResponse(val data: ListingData)
 

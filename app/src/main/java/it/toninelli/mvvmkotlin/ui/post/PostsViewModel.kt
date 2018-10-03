@@ -22,13 +22,12 @@ class PostsViewModel @Inject constructor(
 
     val result = MutableLiveData<Resource<PagedList<RedditPost>>>()
 
-    var reporesult = repo.getPostsPaged(2,compositeDisposable)
+    private var reporesult = repo.getPostsPaged(5)
     val networkState = reporesult.networkState
     val refreshState = reporesult.refreshState
 
     init {
         loadPosts()
-
     }
 
 
@@ -50,6 +49,7 @@ class PostsViewModel @Inject constructor(
 
     fun retry(){
         reporesult.retry.invoke()
+
     }
 
     fun refresh(){
@@ -58,5 +58,6 @@ class PostsViewModel @Inject constructor(
 
     override fun onCleared() {
         compositeDisposable.clear()
+        reporesult.clear
     }
 }

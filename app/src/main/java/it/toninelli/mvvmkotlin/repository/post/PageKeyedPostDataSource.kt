@@ -6,6 +6,7 @@ import android.arch.paging.PageKeyedDataSource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 import it.toninelli.mvvmkotlin.model.Post
@@ -19,12 +20,11 @@ import it.toninelli.mvvmkotlin.repository.NetworkState.Companion.LOADING
 
 class PageKeyedPostDataSource(
         private val apiService: ApiService,
-        private val executor: Executor,
-        private val compositeDisposable: CompositeDisposable
-        ) : PageKeyedDataSource<String, RedditPost>(){
+        private val executor: Executor) : PageKeyedDataSource<String, RedditPost>(){
 
 
 
+    val compositeDisposable = CompositeDisposable()
     private var retry : (() -> Any)? = null
 
     val networkState = MutableLiveData<NetworkState>()
@@ -99,6 +99,14 @@ class PageKeyedPostDataSource(
     //ignore
 
     }
+
+    fun clear (){
+
+        compositeDisposable.clear()
+    }
+
+
+
 
 
 

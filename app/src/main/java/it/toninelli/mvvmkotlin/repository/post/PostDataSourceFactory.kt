@@ -12,8 +12,7 @@ import java.util.concurrent.Executor
 
 class PostDataSourceFactory(
         private val apiService: ApiService,
-        private val networkExecutor: Executor,
-        private val compositeDisposable: CompositeDisposable
+        private val networkExecutor: Executor
         ): DataSource.Factory<String,RedditPost>()
 {
 
@@ -21,7 +20,7 @@ class PostDataSourceFactory(
 
 
     override fun create(): DataSource<String, RedditPost> {
-        val postDataSource = PageKeyedPostDataSource(apiService,networkExecutor, compositeDisposable)
+        val postDataSource = PageKeyedPostDataSource(apiService,networkExecutor)
         postDataSourceLiveData.postValue(postDataSource)
         return postDataSource
     }
