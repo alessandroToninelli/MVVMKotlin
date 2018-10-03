@@ -1,3 +1,8 @@
+
+#### ***UPDATE
+I have update project with PagingLibrary with RxJava to load the posts gradually
+
+
 # MVVMKotlin
 MVVM design pattern fo android write with kotlin
 
@@ -17,6 +22,7 @@ Then the ViewModel communicates with the Respository via rxJava, between UI and 
 * LiveData
 * Retrofit
 * DataBinding
+* PagingLibrary
   
   
 Now there is no data saving on Room, it will soon be introduced with the Clean Architecture
