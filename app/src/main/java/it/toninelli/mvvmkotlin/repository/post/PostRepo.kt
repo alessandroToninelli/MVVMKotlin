@@ -12,6 +12,7 @@ import it.toninelli.mvvmkotlin.model.RedditPost
 import it.toninelli.mvvmkotlin.repository.Listing
 import it.toninelli.mvvmkotlin.retrofit.ApiService
 import it.toninelli.mvvmkotlin.util.AppExecutors
+import it.toninelli.mvvmkotlin.repository.post.PostDataSourceFactory
 
 import javax.inject.Inject
 import javax.inject.Named
@@ -41,7 +42,7 @@ class PostRepo @Inject constructor(
 
 
     fun getPostsPaged(pageSize: Int):Listing<RedditPost>{
-        val sourceFactory = PostDataSourceFactory(apiService,appExecutors.networkIO())
+        val sourceFactory = PostDataSourceFactory(apiService, appExecutors.networkIO())
         val config = PagedList.Config.Builder()
                 .setPageSize(pageSize)
                 .setInitialLoadSizeHint(pageSize*2)
