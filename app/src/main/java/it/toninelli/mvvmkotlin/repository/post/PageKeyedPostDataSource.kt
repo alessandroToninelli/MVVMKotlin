@@ -50,12 +50,11 @@ class PageKeyedPostDataSource(
         initialLoad.postValue(NetworkState.LOADING)
 
         compositeDisposable.add(apiService.getTop("androiddev",params.requestedLoadSize)
-                .flatMap { response -> Observable.just(response.body()?.data)}
+                .map { response -> response.body()?.data}
                 .subscribe({
                     retry = null
                     networkState.postValue(NetworkState.LOADED)
                     initialLoad.postValue(NetworkState.LOADED)
-                    println("before: ${it?.before} and after ${it?.after}")
                     callback.onResult(it?.children?.map { it.data }?: emptyList(),it?.before, it?.after)
                 },{
                     retry = {
@@ -72,11 +71,9 @@ class PageKeyedPostDataSource(
     override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String,RedditPost>) {
 
 
-        println("parametro: ${params.key}")
-
         networkState.postValue(NetworkState.LOADING)
         compositeDisposable.add(apiService.getTopAfter("androiddev", params.key,params.requestedLoadSize)
-                .flatMap { response -> Observable.just(response.body()?.data)}
+                .map { response -> response.body()?.data}
                 .subscribe({
                     retry = null
                     networkState.postValue(NetworkState.LOADED)

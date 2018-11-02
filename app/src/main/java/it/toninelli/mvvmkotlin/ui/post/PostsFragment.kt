@@ -86,7 +86,6 @@ class PostsFragment:Fragment(), Injectable {
 
     private fun initPostList() {
         viewModel.result.observe(this, Observer {
-            println(it?.status)
             binding.resource = it
             it?.data?.let {
                 adapter.submitList(it)
@@ -94,6 +93,7 @@ class PostsFragment:Fragment(), Injectable {
         })
 
         viewModel.networkState.observe(this, Observer {
+            println(it)
             binding.netState = it
         })
 
