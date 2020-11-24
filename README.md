@@ -1,6 +1,5 @@
+#### ***DEPRECATED***
 
-#### ***UPDATE
-I have update project with PagingLibrary with RxJava to load the posts gradually
 
 
 # MVVMKotlin
